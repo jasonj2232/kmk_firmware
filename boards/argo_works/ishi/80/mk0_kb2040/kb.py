@@ -1,7 +1,7 @@
 import board
 
 from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
-from kmk.quickpin.pro_micro.nice_nano import pinout as pins
+from kmk.quickpin.pro_micro.kb2040 import pinout as pins
 from kmk.scanners import DiodeOrientation
 
 class KMKKeyboard(_KMKKeyboard):
