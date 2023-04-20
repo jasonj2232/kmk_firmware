@@ -1,15 +1,19 @@
+import board
+
 from kb import KMKKeyboard
 
 from kmk.extensions.media_keys import MediaKeys
 from kmk.keys import KC
 from kmk.modules.layers import Layers
+from kmk.modules.encoder import EncoderHandler
 
 keyboard = KMKKeyboard()
 
 media = MediaKeys()
 layers_ext = Layers()
+encoder_handler = EncoderHandler()
 
-keyboard.modules = [layers_ext]
+keyboard.modules = [layers_ext, encoder_handler]
 keyboard.extensions = [media]
 
 # Cleaner key names
@@ -17,7 +21,7 @@ _______ = KC.TRNS
 XXXXXXX = KC.NO
 
 keyboard.keymap = [
-    [ 
+    [
         KC.PMNS, KC.PAST, KC.PSLS, KC.NLCK,    KC.ESC,       KC.N1,   KC.N2,   KC.N3,   KC.N4,   KC.N5,   KC.N6,   KC.N7,   KC.N8,   KC.N9,   KC.N0,   KC.MINS, KC.EQL,  KC.BSPC,
         KC.PPLS, KC.P9,   KC.P8,   KC.P7,      KC.TAB,       KC.Q,    KC.W,    KC.E,    KC.R,    KC.T,    KC.Y,    KC.U,    KC.I,    KC.O,    KC.P,    KC.LBRC, KC.RBRC, KC.BSLS,
                  KC.P6,   KC.P5,   KC.P4,      KC.CAPSLOCK,  KC.A,    KC.S,    KC.D,    KC.F,    KC.G,    KC.H,    KC.J,    KC.K,    KC.L,    KC.SCLN, KC.QUOT,          KC.ENT,
@@ -32,6 +36,12 @@ keyboard.keymap = [
                  _______, _______,             _______,      _______, _______,                           _______,                             _______, KC.LEFT,KC.DOWN, KC.RGHT,    KC.MPLY
     ]
 ]
+
+encoder_handler.pins = ((board.D12, board.D13, None, False),)
+
+encoder_handler.map = [ ((KC.VOLD, KC.VOLU, KC.MUTE),),
+                        ((KC.BRIU, KC.BRID, KC.MPLY),),
+                      ]
 
 if __name__ == '__main__':
     keyboard.go()
