@@ -5,7 +5,6 @@ from kmk.keys import KC
 from kmk.modules.layers import Layers
 
 keyboard = KMKKeyboard()
-keyboard.debug_enabled = True
 
 media = MediaKeys()
 layers_ext = Layers()
